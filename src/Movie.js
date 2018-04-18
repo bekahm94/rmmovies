@@ -4,7 +4,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 import { Card, CardImg, CardText, Row, Col, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 //import {BrowserRouter, Route, NavLink} from 'react-router-dom';
-
+import SortRadio from './Components/SortRadio';
 //declaring API
 //const key = '5aba3c395ae37ecf6868b1d015913de3';
 //const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWJhM2MzOTVhZTM3ZWNmNjg2OGIxZDAxNTkxM2RlMyIsInN1YiI6IjVhYTkwNzY5MGUwYTI2M2RkMzAzNjdmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Gp_TRImPQWMhPQ1BU4zUePIWtc5wjAyPhJAeA4WFLKI';
@@ -14,8 +14,11 @@ import { Card, CardImg, CardText, Row, Col, Modal, ModalHeader, ModalBody, Butto
 class Movie extends React.Component {
   constructor(){
     super();
-    this.state = {movieData: []};
-
+    this.state = {
+      movieData: [],
+      sort: 'Most Popular'
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount(){
@@ -33,16 +36,36 @@ class Movie extends React.Component {
     });
   }
 
+  handleChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
+    let data = this.state.sort === 'Most Popular' ? this.state.movieData : [].concat(this.state.movieData)
+    .sort((a, b) => {
+      if(a.popularity < b.popularity) return -1;
+      if(a.popularity > b.popularity) return 1;
+      return 0;
+    });
+
     let url = "http://image.tmdb.org/t/p/w185";
-    const formattedMovies = this.state.movieData.map( (md,i) => {
+    const movieList = data.map( (md,i) => {
       return <Movies key={i} name={md.title} image={md.poster_path ? url + md.poster_path  : "http://via.placeholder.com/100x150"} description={md.overview} popularity={md.popularity} genre={md.genres_name}/>;
     });
     return (
-      <Row>
-        {formattedMovies}
-      </Row>
-    );
+      <section className="section">
+        <SortRadio handleChange={this.handleChange} checked={this.state.sort}/>
+          <Row>
+            {movieList}
+          </Row>
+        </section>
+      );
     }
   }
 
