@@ -1,0 +1,89 @@
+body {
+  background-color: #85917D;
+  padding: 20px;
+  margin: 0;
+}
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+}
+.modalButton {
+  background-color: #470aab;
+}
+p, ul, li {
+  font-family: 'Raleway', sans-serif;
+}
+ul.header li {
+  display: inline;
+  list-style-type: none;
+}
+ul.header {
+  background-color:  #860255;
+}
+ul.header li a {
+  color: #FFF;
+  font-weight: normal;
+  padding: 20px;
+  display: inline-block;
+}
+.search-header {
+  display: inline;
+  width: 80px;
+  height: 0px;
+  float: right;
+  color: #ffffff;
+  font-size: 18px;
+  border-bottom: 100px solid #ffffff;
+  border-left: 40px solid transparent;
+  position: relative;
+}
+.content {
+  background-color: #E2E8ED;
+  padding: 20px;
+}
+.content h2 {
+  padding: 0;
+  margin: 0;
+}
+.content li {
+  margin-bottom: 10px;
+}
+.active {
+  text-decoration-style: solid;
+  text-decoration-line: underline;
+  background-color: #9C627B;
+  position: relative;
+}
+.jumbotronHeader {
+  background-color:  #860255;
+ /* IE10+ */
+ background-image: -ms-linear-gradient(right, #860255 0%, #EF4B3F 100%);
+ /* Mozilla Firefox */
+ background-image: -moz-linear-gradient(right, #860255 0%, #EF4B3F 100%);
+ /* Opera */
+ background-image: -o-linear-gradient(left, #860255 0%, #EF4B3F 100%);
+ /* Webkit (Chrome 11+) */
+ background-image: -webkit-linear-gradient(left, #860255 0%, #EF4B3F 100%);
+ /* W3C Markup */
+ background-image: linear-gradient(to right, #860255 0%, #EF4B3F 100%);
+  padding: 0;
+}
+.display-3 {
+  color: #ffefff;
+}
+ul.footer-left li {
+  list-style-type: none;
+  margin: 0;
+}
+ul.footer-left {
+  background-color: #860255;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+ul.footer-left li a {
+  color: #FFF;
+  font-weight: normal;
+  text-decoration-style: solid;
+  text-decoration-line: underline;
+  padding: 10px;
+  display: inline-block;
+}
