@@ -22,7 +22,7 @@ class Home extends React.Component {
       searchText: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount(){
@@ -45,22 +45,24 @@ class Home extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+
     this.setState({
       [name]: value
     });
   }
 
-  handleClick(event) {
-    const name = event.target.name;
-    this.setState(prevState => ({
-      [name]: !prevState[name]
-    }));
-  }
+  // handleClick(event) {
+  //   const name = event.target.name;
+  //   this.setState(prevState => ({
+  //     [name]: !prevState[name]
+  //   }));
+  // }
 
   componentWillUnMount(){
   }
 
   render() {
+
     let data = this.state.sort === 'Most Popular' ? this.state.newData : [].concat(this.state.newData)
     .sort((a, b) => {
       if(a.popularity < b.popularity) return -1;
@@ -69,7 +71,7 @@ class Home extends React.Component {
     });
 
     let url = "http://image.tmdb.org/t/p/w185";
-    const homeList = this.state.newData.map( (nd,i) => {
+    const homeList = data.map( (nd,i) => {
       //const movieMatch = nd.name.lowerCase().includes(this.state.searchText);
       return <Lists key={i} name={nd.title} image={nd.poster_path ? url + nd.poster_path  : "http://via.placeholder.com/100x150"} description={nd.overview} popularity={nd.popularity}/>;
     });
